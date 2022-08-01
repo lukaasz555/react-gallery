@@ -7,9 +7,15 @@ import ActiveImg from "./components/ActiveImg";
 const Wrapper = styled.div`
   margin: 2em auto;
   max-width: 1300px;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  justify-content: center;
+  /*   display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: 0.5fr;
+  justify-content: center;
+  align-items: center; */
 `;
 
 const App = () => {
