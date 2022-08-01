@@ -38,7 +38,6 @@ const App = () => {
       <ActiveImg
         isOpen={isOpen}
         setOpen={setOpen}
-        index={activeIndex}
         pictures={pictures}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}

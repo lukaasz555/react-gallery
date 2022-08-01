@@ -33,14 +33,17 @@ const ActiveImg = ({
   isOpen,
   setOpen,
   pictures,
-  index,
   activeIndex,
   setActiveIndex,
 }) => {
   return (
     <Wrapper isOpen={isOpen}>
-      <img src={pictures[index].src} id={pictures[index].id} alt="default" />
-      <p>{`Picture ${index + 1} of ${pictures.length}`}</p>
+      <img
+        src={pictures[activeIndex].src}
+        id={pictures[activeIndex].id}
+        alt={pictures[activeIndex].alt}
+      />
+      <p>{`Picture ${activeIndex + 1} of ${pictures.length}`}</p>
       <CloseButton onClick={() => setOpen(false)} />
       <NextButton
         onClick={() =>
