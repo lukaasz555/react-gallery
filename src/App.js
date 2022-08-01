@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import data from "./data/data";
+import styled from "styled-components";
+import SingleItem from "./components/SingleItem";
+import ActiveImg from "./components/ActiveImg";
 
-function App() {
+const Wrapper = styled.div`
+  margin: 2em auto;
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+`;
+
+const App = () => {
+  const [pictures, setPictures] = useState(data);
+  const [isOpen, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const showPicture = (index) => {
+    setOpen(true);
+    setActiveIndex(index);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      {pictures.map((pic, index) => (
+        <SingleItem
+          index={index}
+          key={pic.id}
+          id={pic.id}
+          src={pic.src}
+          onClick={(e) => showPicture(index)}
+        />
+      ))}
+
+      <ActiveImg
+        isOpen={isOpen}
+        setOpen={setOpen}
+        index={activeIndex}
+        pictures={pictures}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      />
+    </Wrapper>
   );
-}
+};
 
 export default App;
