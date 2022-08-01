@@ -11,11 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /*   display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
-  grid-template-rows: 0.5fr;
-  justify-content: center;
-  align-items: center; */
 `;
 
 const App = () => {
