@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CloseButton from "./CloseButton";
 import NextButton from "./NextButton";
@@ -36,6 +36,51 @@ const ActiveImg = ({
   activeIndex,
   setActiveIndex,
 }) => {
+  const nextPicture = () => {
+    if (activeIndex + 1 === pictures.length) {
+      setActiveIndex(0);
+    } else {
+      setActiveIndex(activeIndex + 1);
+    }
+  };
+
+  const previousPicture = () => {
+    if (activeIndex === 0) {
+      setActiveIndex(pictures.length - 1);
+    } else {
+      setActiveIndex(activeIndex - 1);
+    }
+  };
+
+  /*   const handleKey = (e) => {
+    if (e.key === "ArrowRight") {
+      nextPicture();
+      console.log(activeIndex + " jest aktywne");
+    } else if (e.key === "ArrowLeft") {
+      previousPicture();
+      console.log("previus :" + activeIndex);
+    }
+  }; */
+
+  const handleKey = (e) => {
+    if (e.key === "ArrowRight") {
+      activeIndex + 1 === pictures.length
+        ? setActiveIndex(0)
+        : setActiveIndex(activeIndex + 1);
+    } else if (e.key === "ArrowLeft") {
+      activeIndex === 0
+        ? setActiveIndex(pictures.length - 1)
+        : setActiveIndex(activeIndex - 1);
+    }
+  };
+
+  document.body.addEventListener(
+    "keydown",
+    (e) =>
+      (e.key === "ArrowRight" && handleKey(e)) ||
+      (e.key === "ArrowLeft" && handleKey(e))
+  );
+
   return (
     <Wrapper isOpen={isOpen}>
       <img
@@ -45,20 +90,10 @@ const ActiveImg = ({
       />
       <p>{`Picture ${activeIndex + 1} of ${pictures.length}`}</p>
       <CloseButton onClick={() => setOpen(false)} />
-      <NextButton
-        onClick={() =>
-          activeIndex + 1 === pictures.length
-            ? setActiveIndex(0)
-            : setActiveIndex(activeIndex + 1)
-        }
-      />
-      <PrevButton
-        onClick={() =>
-          activeIndex === 0
-            ? setActiveIndex(pictures.length - 1)
-            : setActiveIndex(activeIndex - 1)
-        }
-      />
+
+      <NextButton onClick={nextPicture} />
+
+      <PrevButton onClick={previousPicture} />
     </Wrapper>
   );
 };
